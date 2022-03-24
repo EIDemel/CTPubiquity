@@ -1,14 +1,12 @@
 <?php
 namespace controllers;
- use models\Organization;
  use models\Product;
  use models\Section;
  use Ubiquity\attributes\items\router\Get;
  use Ubiquity\attributes\items\router\Route;
- use Ubiquity\core\postinstall\Display;
- use Ubiquity\orm\creator\Model;
  use Ubiquity\orm\DAO;
  use Ubiquity\orm\repositories\ViewRepository;
+ use Ubiquity\utils\http\UResponse;
  use Ubiquity\utils\http\USession;
 
  /**
@@ -41,11 +39,6 @@ class StoreController extends ControllerBase{
         $this->loadView("StoreController/getBar"  );
     }
 
-    #[Get(path: "store/addToCart/{idProduit}/{count}", name: 'store.addToCart')]
-    public function addToCart(int $idProduit, int $count){
-        $sessionID = USession::get($idProduit);
-
-    }
 
     #[Route(path: "store/allProducts/", name: 'store.allProducts')]
     public function allProducts() {
@@ -53,6 +46,10 @@ class StoreController extends ControllerBase{
         $this->loadView("StoreController/allProducts", \compact('tout')  );
     }
 
-
-
+    #[Route(path:'store/addToCart/{elt}/{prix}', name:'store.addToCart')]
+    public function addToCart($elt,$prix){
+        USession::set("prix",USession::get("prix")+$prix);
+        USession::set("quantitee",USession::get("quantitee")+1);
+        UResponse::header('location', '/store/allProducts/');
+    }
 }
