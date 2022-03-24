@@ -1,9 +1,22 @@
 <!--View associated to getBar action of StoreController controller -->
 <h1> Section</h1>
-{% for product in byId.products %}
-<div class="ui segment">
-    <h1>{{product.name}}</h1> <br/>
-    {{product.getPrice}}€
-    <div class="ui class ui card" > {{img('store/' ~ product.image ~ '.jpg', {class: ''}) }}</div>
+<h3>{{byId.name}}</h3>
+<div class="ui cards">
+    {% for product in byId.products %}
+    <div class="ui card">
+        <div class="content">
+            <div class="ui class ui card" > {{img('store/' ~ product.image ~ '.jpg', {class: ''}) }}</div>
+            <h3>{{product.name}}</h3>
+            <div class="meta">
+                {{product.getPrice}}€
+            </div>
+        </div>
+
+        <div class="extra content">
+            <a class="ui bottom attached button green">
+                <i class="add icon" ></i> To Cart
+            </a>
+        </div>
+    </div>
+    {% endfor %}
 </div>
-{% endfor %}
