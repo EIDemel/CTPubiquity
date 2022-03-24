@@ -1,18 +1,18 @@
 <!--View associated to index action of IndexController controller -->
 
 
-    <a class="ui attached button green " href=" {{path ('store.allProducts')}}"> Parcourir le store ({{countProduits}} produits ) </a>
-    <hr>
-            <div class="ui cards attached">
-            {% for section in all %}
-            <div class="ui card">
-                <div class="content">
-                    <h3>{{section.name}}</h3></a><br>
-                    {{section.description}}
-                    </br></br>
-                </div>
-                <a class="ui bottom attached button grey " href=" {{path ('store.section',[section.id])}}" > Consulter produits ({{section.products|length}}) </a>
-            </div>
-            </br>
-            {% endfor %}
+<a class="ui attached button green " href=" {{path ('store.allProducts')}}"> Parcourir le store ({{countProduits}} produits ) </a>
+<hr>
+<div class="ui cards attached">
+    {% for section in all %}
+    <div class="ui card">
+        <div class="content">
+            <h3>{{section.name}}</h3></a><br>
+            {{section.description}}
+            </br></br>
         </div>
+        <a class="ui bottom attached button grey " href=" {{path ('store.section',[section.id])}}" > Consulter produits ({{section.products|length}}) </a>
+    </div>
+    </br>
+    {% endfor %}
+</div>

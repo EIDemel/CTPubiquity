@@ -9,6 +9,7 @@ namespace controllers;
  use Ubiquity\orm\creator\Model;
  use Ubiquity\orm\DAO;
  use Ubiquity\orm\repositories\ViewRepository;
+ use Ubiquity\utils\http\USession;
 
  /**
   * Controller StoreController
@@ -18,6 +19,7 @@ class StoreController extends ControllerBase{
     private ViewRepository $repo;
 
     public function initialize() {
+        $this->view->setVar("nimp", 0);
         parent::initialize();
         $this->repo??=new ViewRepository($this,Section::class);
     }
@@ -37,5 +39,11 @@ class StoreController extends ControllerBase{
     public function getBar(int $idSection) {
         $this->repo->byId($idSection, ['products']);
         $this->loadView("StoreController/getBar"  );
+    }
+
+    #[Get(path: "store/addToCart/{idProduit}/{count}", name: 'store.addToCart')]
+    public function addToCart(int $idProduit, int $count){
+        $sessionID = USession::get($idProduit);
+
     }
 }
