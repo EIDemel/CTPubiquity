@@ -3,6 +3,7 @@ namespace controllers;
  use models\Organization;
  use models\Product;
  use models\Section;
+ use Ubiquity\attributes\items\router\Get;
  use Ubiquity\attributes\items\router\Route;
  use Ubiquity\core\postinstall\Display;
  use Ubiquity\orm\creator\Model;
@@ -12,7 +13,7 @@ namespace controllers;
  /**
   * Controller StoreController
   */
-class StoreController extends \controllers\ControllerBase{
+class StoreController extends ControllerBase{
 
     private ViewRepository $repo;
 
@@ -30,4 +31,11 @@ class StoreController extends \controllers\ControllerBase{
         $this->repo->all('', ["products"]);
         $this->loadView("IndexController/index",['countProduits' => $count]  );
 	}
+
+
+    #[Get(path: "store/section/{idSection}", name: 'store.section')]
+    public function getBar(int $idSection) {
+        $this->repo->byId($idSection, ['products']);
+        $this->loadView("StoreController/getBar"  );
+    }
 }

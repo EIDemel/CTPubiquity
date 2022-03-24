@@ -1,7 +1,7 @@
 <!--View associated to index action of IndexController controller -->
 <h1> Index </h1>
 
-<button href=" {{path ('store.allProducts')}}"> Parcourir le store ({{countProduits}} produits ) </button>
+<a href=" {{path ('store.allProducts')}}"> Parcourir le store ({{countProduits}} produits ) </a>
 <ul>
 
     {% for section in all %}
@@ -10,7 +10,7 @@
         {{section.description}}
         </br></br>
 
-        <button href=" {{path ('store.section',[section.id])}}" > Consulter produits ({{section.products|length}}) </button>
+        <a href=" {{path ('store.section',[section.id])}}" > Consulter produits ({{section.products|length}}) </a>
     </div>
     </br>
     {% endfor %}
