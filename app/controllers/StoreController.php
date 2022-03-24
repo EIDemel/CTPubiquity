@@ -46,4 +46,13 @@ class StoreController extends ControllerBase{
         $sessionID = USession::get($idProduit);
 
     }
+
+    #[Route(path: "store/allProducts/", name: 'store.allProducts')]
+    public function allProducts() {
+        $tout = DAO::getAll(Product::class);
+        $this->loadView("StoreController/allProducts", \compact('tout')  );
+    }
+
+
+
 }
