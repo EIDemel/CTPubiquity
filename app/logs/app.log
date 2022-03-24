@@ -1,0 +1,1 @@
+{"message":"Route found for /_default/ : {\"controller\":\"controllers\\\\IndexController\",\"action\":\"index\",\"mainParams\":null}","context":{"context":"Router","part":"getRouteUrlParts","extra":null},"level":200,"level_name":"INFO","channel":"s623c43adb3d00","datetime":"2022-03-24T13:04:39.639622+01:00","extra":{}}
